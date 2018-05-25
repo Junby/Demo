@@ -19,9 +19,9 @@ public class AsyncWorker
         Observable.fromCallable(() ->{
            operation.call();
            return TopicMessage.Builder.success(topic).build();
-        }).retry((count, e) -> (e instanceof IOException) && count < 3).onErrorReturn(e ->{
+        }).retry((count, e) -> (e instanceof IOException) && count < 3).onErrorReturn(e -> {
             return TopicMessage.Builder.failure(topic).build();
-        }).subscribeOn(Schedulers.io()).subscribe(v ->{
+        }).subscribeOn(Schedulers.io()).subscribe(v -> {
             TopicMessager.publish(v);
         }, e -> {
             TopicMessager.close(topic);
