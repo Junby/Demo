@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="/demo/js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<h3 th:text="登录成功"></h3><a href="/demo/logout">注销</a>
+<div id="test">getJson</div>
+<script type="text/javascript">
+    $(function(){
+        $.get("/demo/test",function(result){
+            console.log(result);
+        });
+    });
+</script>
+</body>
+</html>
